@@ -1,0 +1,38 @@
+---
+/**
+ * Bandeau d'appel à l'action réutilisable.
+ */
+interface Button {
+  label: string;
+  href: string;
+  variant?: 'gold' | 'outline';
+}
+
+interface Props {
+  kicker?: string;
+  title: string;
+  text?: string;
+  buttons?: Button[];
+}
+
+const { kicker, title, text, buttons = [] } = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="cta-band reveal">
+      {kicker && <span class="kicker">{kicker}</span>}
+      <h2>{title}</h2>
+      {text && <p>{text}</p>}
+      {buttons.length > 0 && (
+        <div class="btn-row">
+          {buttons.map((b) => (
+            <a class={`btn ${b.variant === 'outline' ? 'btn--outline' : 'btn--gold'} btn--arrow`} href={b.href}>
+              {b.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

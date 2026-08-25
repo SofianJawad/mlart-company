@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Événementiel — guirlandes et confettis">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4e2b4d"/>
+      <stop offset="1" stop-color="#211020"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g stroke="#c9a24b" stroke-width="3">
+    <path d="M60 130 Q 240 210 420 130 T 780 130 T 1140 130" fill="none"/>
+    <path d="M60 190 Q 240 270 420 190 T 780 190 T 1140 190" fill="none" opacity="0.6"/>
+  </g>
+  <g>
+    <polygon points="120,120 150,120 135,165" fill="#e8cd8b"/>
+    <polygon points="220,168 250,168 235,213" fill="#8a3044"/>
+    <polygon points="330,122 360,122 345,167" fill="#f7ecd8"/>
+    <polygon points="470,176 500,176 485,221" fill="#e8cd8b"/>
+    <polygon points="590,128 620,128 605,173" fill="#8a3044"/>
+    <polygon points="720,172 750,172 735,217" fill="#f7ecd8"/>
+    <polygon points="840,126 870,126 855,171" fill="#e8cd8b"/>
+    <polygon points="970,174 1000,174 985,219" fill="#8a3044"/>
+    <polygon points="1080,128 1110,128 1095,173" fill="#f7ecd8"/>
+  </g>
+  <g fill="#e8cd8b">
+    <circle cx="180" cy="420" r="7"/>
+    <circle cx="380" cy="540" r="5"/>
+    <circle cx="560" cy="440" r="8"/>
+    <circle cx="760" cy="560" r="6"/>
+    <circle cx="960" cy="430" r="7"/>
+    <circle cx="1090" cy="540" r="5"/>
+    <circle cx="100" cy="560" r="4"/>
+    <circle cx="700" cy="330" r="5"/>
+    <circle cx="300" cy="300" r="4"/>
+    <circle cx="900" cy="300" r="4"/>
+  </g>
+  <path d="M420 590 l10 20 20 10 -20 10 -10 20 -10 -20 -20 -10 20 -10z" fill="#f7ecd8" opacity="0.85"/>
+  <path d="M820 560 l8 16 16 8 -16 8 -8 16 -8 -16 -16 -8 16 -8z" fill="#f7ecd8" opacity="0.6"/>
+  <circle cx="1200" cy="0" r="200" fill="#8a3044" opacity="0.25"/>
+</svg>

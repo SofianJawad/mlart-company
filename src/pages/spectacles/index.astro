@@ -1,0 +1,61 @@
+---
+/**
+ * Nos spectacles — liste générée depuis le CMS
+ */
+import Base from '../../layouts/Base.astro';
+import HeroArt from '../../components/HeroArt.astro';
+import CTABand from '../../components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const shows = (await getCollection('spectacles')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base
+  title="Nos spectacles — Théâtre, danse, aérien et chant"
+  description="Rêveries, Notre Cabaret moderne, L'Ascenseur : des spectacles tout public mêlant théâtre, danse, arts aériens et chant, joués partout en France."
+>
+  <section class="page-hero">
+    <div class="page-hero__art"><HeroArt /></div>
+    <div class="container page-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">→</span>
+        <span aria-current="page">Nos spectacles</span>
+      </nav>
+      <span class="kicker">La programmation</span>
+      <h1>Des spectacles tout public mêlant danse, théâtre, aérien et chant</h1>
+      <p class="lead">
+        Parce que nous croyons au pouvoir de l'art de rassembler et de faire rêver, nous imaginons
+        des univers sensibles qui invitent chacun à porter un regard nouveau sur le monde.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <div class="card-grid">
+        {
+          shows.map((show, i) => (
+            <a class="card reveal" href={`/spectacles/${show.slug}/`}>
+              <div class="card__media">
+                <img src={show.data.heroImage} alt={show.data.title} loading={i === 0 ? 'eager' : 'lazy'} />
+              </div>
+              <div class="card__body">
+                <h2>{show.data.title}</h2>
+                <p>{show.data.tagline}</p>
+                <span class="card__link">Découvrir le spectacle</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    kicker="Programmation"
+    title="Je veux programmer un spectacle"
+    text="Vous êtes une collectivité, une structure culturelle, une association, une entreprise ou une école ? L'un de nos spectacles vous intéresse ? De nos spectacles à nos créations sur mesure, nous intervenons partout en France. Contactez-nous pour une demande de devis !"
+    buttons={[{ label: 'Je contacte ML’Art', href: '/contact/' }]}
+  />
+</Base>

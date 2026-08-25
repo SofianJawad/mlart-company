@@ -1,0 +1,154 @@
+---
+/**
+ * Page d'accueil
+ */
+import Base from '../layouts/Base.astro';
+import HeroArt from '../components/HeroArt.astro';
+import CTABand from '../components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const partners = (await getCollection('partenaires')).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name, 'fr'),
+);
+
+// Doublé pour un défilement en boucle sans couture
+const marqueePartners = [...partners, ...partners];
+---
+
+<Base
+  title="ML'Art Company — Spectacles et prestations événementielles sur-mesure"
+  description="Compagnie d'arts de la scène des Monts du Lyonnais : spectacles de théâtre, danse, chant et cirque aérien, créations sur-mesure et ateliers — partout en France."
+>
+  <!-- ======================= HÉRO ======================= -->
+  <section class="hero">
+    <div class="hero__art"><HeroArt /></div>
+    <div class="container hero__inner">
+      <span class="kicker">Compagnie d'arts de la scène · Monts du Lyonnais</span>
+      <h1>ML'Art Company, <em>spectacles</em> et <em>prestations événementielles</em> sur-mesure</h1>
+      <p>
+        <strong>ML'Art Company</strong> est une <strong>compagnie d'arts de la scène</strong> basée
+        dans les Monts du Lyonnais, créée par des artistes pluridisciplinaires. <strong>Danse</strong>,
+        <strong>théâtre</strong>, <strong>chant</strong>, <strong>cirque aérien</strong>… Nos artistes
+        passionnés se déplacent <strong>partout en France</strong> pour faire vivre à notre public des
+        moments magiques et inoubliables !
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--gold btn--arrow" href="/spectacles/">Découvrir nos spectacles</a>
+        <a class="btn btn--outline btn--arrow" href="/evenementiel/">Découvrir nos prestations événementielles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= L'UNIVERS ======================= -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="kicker kicker--center">Notre univers</span>
+        <h2>L'univers ML'Art Company</h2>
+      </div>
+      <div class="prose reveal" style="margin-inline:auto">
+        <p>
+          Chez <strong>ML'Art Company</strong>, nous créons des <strong>spectacles</strong> et des
+          <strong>expériences artistiques</strong> où le théâtre, la danse, les arts aériens et le
+          chant se rencontrent pour susciter l'émotion et l'émerveillement.
+        </p>
+        <p>
+          Animées par une passion profonde de la scène, nous avons une <strong>haute exigence
+          artistique</strong> pour chacune de nos créations, aussi bien pour nos
+          <strong>spectacles</strong> que pour nos <strong>prestations événementielles</strong>.
+          Chaque détail, du geste à la parole, de la chorégraphie à la mise en scène, est pensé pour
+          offrir des instants de poésie, de beauté et de partage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 3 BLOCS ======================= -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Nos interventions</span>
+        <h2>De la danse, du théâtre, du chant, du cirque aérien… en spectacle ou pour vos événements !</h2>
+        <p class="lead">
+          Spectacles, créations sur-mesure et prestations événementielles… ML'Art Company propose un
+          large choix d'interventions artistiques et s'adapte à votre besoin.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <a class="card reveal" href="/spectacles/">
+          <div class="card__media">
+            <img src="/images/blocs/spectacles.svg" alt="Spectacles — scène et rideau" loading="lazy" />
+          </div>
+          <div class="card__body">
+            <h2>Spectacles</h2>
+            <p>
+              Des créations originales pour tout public, mêlant théâtre, danse et arts aériens, pour
+              émerveiller, émouvoir, faire réfléchir et partager des instants uniques.
+            </p>
+            <span class="card__link">Découvrir nos spectacles</span>
+          </div>
+        </a>
+
+        <a class="card reveal" href="/evenementiel/">
+          <div class="card__media">
+            <img src="/images/blocs/evenementiel.svg" alt="Créations sur-mesure — guirlandes et confettis" loading="lazy" />
+          </div>
+          <div class="card__body">
+            <h2>Créations sur-mesure et événementiel</h2>
+            <p>
+              Des performances artistiques imaginées pour vos événements, adaptées à vos envies, à
+              votre lieu et à votre public.
+            </p>
+            <span class="card__link">Découvrir nos prestations</span>
+          </div>
+        </a>
+
+        <a class="card reveal" href="/ateliers/">
+          <div class="card__media">
+            <img src="/images/blocs/ateliers.svg" alt="Ateliers — pratique artistique collective" loading="lazy" />
+          </div>
+          <div class="card__body">
+            <h2>Ateliers</h2>
+            <p>
+              Des ateliers de pratique artistique pour tous les publics (scolaires, entreprises,
+              stages), favorisant la créativité, l'expression, la confiance en soi ou la cohésion de
+              groupe.
+            </p>
+            <span class="card__link">Découvrir nos ateliers</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PARTENAIRES ======================= -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="kicker kicker--center">Confiance</span>
+        <h2>Ils nous ont fait confiance</h2>
+      </div>
+      {partners.length > 0 && (
+        <div class="partners-band reveal">
+          <div class="partners-track">
+            {
+              marqueePartners.map((p) => (
+                <img src={p.data.logo} alt={p.data.name} loading="lazy" />
+              ))
+            }
+          </div>
+        </div>
+      )}
+      <p class="partners-note reveal">… et bien d'autres !</p>
+    </div>
+  </section>
+
+  <!-- ======================= CTA ======================= -->
+  <CTABand
+    kicker="Programmation"
+    title="Je veux programmer ML'Art Company !"
+    text="Vous êtes un acteur culturel, une municipalité, une association, une entreprise, une école ? Vous souhaitez programmer un spectacle, un atelier, vous avez un besoin de création personnalisée pour un événement ? Notre compagnie de danse, de théâtre, nos chanteurs et nos artistes aériennes se déplacent partout en France ! Contactez-nous pour en parler."
+    buttons={[{ label: 'Je contacte ML’Art', href: '/contact/' }]}
+  />
+</Base>

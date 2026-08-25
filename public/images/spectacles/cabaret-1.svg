@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Photo de galerie — cabaret 1">
+    <rect width="1200" height="900" fill="#3c0c1c"/>
+    <path d="M-40 675 C 360 315, 720 765, 1240 360" fill="none" stroke="#e8cd8b" stroke-width="20" opacity="0.55"/>
+    <path d="M-40 810 C 420 495.00000000000006, 780 900, 1240 540" fill="none" stroke="#8a3044" stroke-width="13.333333333333334" opacity="0.6"/>
+    <circle cx="264" cy="252.00000000000003" r="54.54545454545455" fill="#e8cd8b" opacity="0.85"/>
+    <circle cx="936" cy="180" r="40" fill="#8a3044"/>
+</svg>

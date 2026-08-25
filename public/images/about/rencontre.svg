@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Une rencontre, une passion — cercles et lumières">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3c1f3d"/>
+      <stop offset="1" stop-color="#241226"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="480" cy="430" r="220" fill="none" stroke="#e8cd8b" stroke-width="3"/>
+  <circle cx="720" cy="430" r="220" fill="none" stroke="#e8cd8b" stroke-width="3"/>
+  <circle cx="480" cy="430" r="220" fill="#8a3044" opacity="0.35"/>
+  <circle cx="720" cy="430" r="220" fill="#8a3044" opacity="0.2"/>
+  <circle cx="480" cy="430" r="120" fill="#e8cd8b" opacity="0.9"/>
+  <circle cx="720" cy="430" r="120" fill="#f7ecd8" opacity="0.9"/>
+  <path d="M480 350 q 80 80 0 160 q -80 -80 0 -160" fill="#3c1f3d"/>
+  <path d="M720 350 q 80 80 0 160 q -80 -80 0 -160" fill="#3c1f3d" opacity="0.85"/>
+  <g fill="#e8cd8b">
+    <circle cx="180" cy="200" r="6"/>
+    <circle cx="1020" cy="180" r="6"/>
+    <circle cx="140" cy="620" r="5"/>
+    <circle cx="1060" cy="640" r="5"/>
+    <circle cx="320" cy="700" r="4"/>
+    <circle cx="880" cy="720" r="4"/>
+    <circle cx="600" cy="120" r="5"/>
+    <circle cx="520" cy="760" r="4"/>
+    <circle cx="700" cy="780" r="4"/>
+  </g>
+  <path d="M260 300 l12 24 24 12 -24 12 -12 24 -12 -24 -24 -12 24 -12z" fill="#e8cd8b" opacity="0.8"/>
+  <path d="M940 340 l10 20 20 10 -20 10 -10 20 -10 -20 -20 -10 20 -10z" fill="#f7ecd8" opacity="0.6"/>
+  <circle cx="1200" cy="0" r="260" fill="#8a3044" opacity="0.3"/>
+</svg>

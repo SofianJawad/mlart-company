@@ -1,0 +1,100 @@
+---
+/**
+ * Événementiel & sur-mesure — prestations générées depuis le CMS
+ */
+import Base from '../layouts/Base.astro';
+import HeroArt from '../components/HeroArt.astro';
+import CTABand from '../components/CTABand.astro';
+import PrestationIcon from '../components/PrestationIcon.astro';
+import { getCollection, render } from 'astro:content';
+
+const prestations = (await getCollection('prestations')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+// Rendu du contenu markdown pré-calculé (Astro n'affiche pas de promesses)
+const renderedPrestations = await Promise.all(
+  prestations.map(async (p) => {
+    const { Content } = await render(p);
+    return { data: p.data, Content };
+  }),
+);
+---
+
+<Base
+  title="Événementiel & sur-mesure — Prestations artistiques"
+  description="Théâtre, danse, artistes aériennes, spectacle sur-mesure, soirée cinéma : ML'Art Company imagine des performances artistiques pour vos événements, partout en France."
+>
+  <section class="page-hero">
+    <div class="page-hero__art"><HeroArt /></div>
+    <div class="container page-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">→</span>
+        <span aria-current="page">Événementiel &amp; sur-mesure</span>
+      </nav>
+      <span class="kicker">Vos événements</span>
+      <h1>Des performances artistiques imaginées pour vos événements</h1>
+      <p class="lead">
+        Mariage, soirée d'entreprise, inauguration, festival, fête de village… Nos artistes créent
+        des interventions adaptées à vos envies, à votre lieu et à votre public.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Nos prestations</span>
+        <h2>Théâtre, danse, aérien, sur-mesure…</h2>
+        <p class="lead">Chaque prestation est imaginée pour votre événement, en collaboration avec vous.</p>
+      </div>
+
+      <div class="prestation-list">
+        {
+          renderedPrestations.map((p) => (
+            <article class="prestation-card reveal">
+              <div class="prestation-card__icon">
+                <PrestationIcon icon={p.data.icon} />
+              </div>
+              <div>
+                <h3>{p.data.title}</h3>
+                <p.Content />
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Comment ça se passe ?</span>
+        <h2>De l'idée à la représentation</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <h3>Échange &amp; écoute</h3>
+          <p>Nous prenons le temps de comprendre votre événement : lieu, public, ambiance, contraintes techniques et budget.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Création sur-mesure</h3>
+          <p>Nos artistes imaginent une performance adaptée : écriture, chorégraphie, mise en scène, habillage sonore et lumière.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Performance &amp; émotion</h3>
+          <p>Le jour J, nos équipes s'installent et donnent vie à votre projet — pour des instants de poésie et de partage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    kicker="Sur-mesure"
+    title="Imaginons votre événement ensemble"
+    text="Une soirée d'entreprise, un mariage, une inauguration, une fête de village ? Parlez-nous de votre projet : nous répondons à chacune de vos demandes, partout en France."
+    buttons={[{ label: 'Je contacte ML’Art', href: '/contact/' }]}
+  />
+</Base>

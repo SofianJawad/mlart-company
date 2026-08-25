@@ -1,0 +1,207 @@
+---
+/**
+ * Fiche spectacle — page générée pour chaque spectacle du CMS
+ * URL : /spectacles/<nom-du-spectacle>/
+ */
+import Base from '../../layouts/Base.astro';
+import HeroArt from '../../components/HeroArt.astro';
+import CTABand from '../../components/CTABand.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const shows = await getCollection('spectacles');
+  return shows.map((show) => ({
+    params: { slug: show.slug },
+    props: { show },
+  }));
+}
+
+const { show } = Astro.props;
+const { Content } = await render(show);
+const data = show.data;
+
+// Conversion d'un lien YouTube/Vimeo en URL d'intégration
+function embedUrl(url: string | undefined): string | null {
+  if (!url) return null;
+  const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`;
+  const vm = url.match(/vimeo\.com\/(\d+)/);
+  if (vm) return `https://player.vimeo.com/video/${vm[1]}`;
+  return null;
+}
+
+const video = embedUrl(data.video);
+
+const metaItems = [
+  { label: 'Public', value: data.public },
+  { label: 'Genre', value: data.genre },
+  { label: "Nombre d'artistes", value: data.artistes },
+  { label: 'Durée', value: data.duree },
+];
+---
+
+<Base
+  title={`${data.title} — Spectacle ML'Art Company`}
+  description={data.tagline}
+>
+  <!-- Héro spectacle -->
+  <section class="page-hero">
+    <div class="page-hero__art"><HeroArt /></div>
+    <div class="container page-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">→</span>
+        <a href="/spectacles/">Nos spectacles</a>
+        <span aria-hidden="true">→</span>
+        <span aria-current="page">{data.title}</span>
+      </nav>
+
+      <div class="show-hero">
+        <div class="show-hero__media">
+          <img src={data.heroImage} alt={data.title} />
+        </div>
+        <div>
+          <span class="kicker">Spectacle</span>
+          <h1>{data.title}</h1>
+          <p class="tagline">{data.tagline}</p>
+          <dl class="show-meta">
+            {
+              metaItems.map((item) => (
+                <div class="show-meta__item">
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Le spectacle -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Présentation</span>
+        <h2>Le spectacle</h2>
+      </div>
+      <div class="show-body prose reveal">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <!-- Vidéo -->
+  <section class="section section--cream" style="padding-top:0">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">En images</span>
+        <h2>Vidéo</h2>
+      </div>
+      {video ? (
+        <div class="video-frame reveal">
+          <iframe
+            src={video}
+            title={`Vidéo — ${data.title}`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      ) : (
+        <div class="video-placeholder reveal">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 8.8v6.4l5-3.2z" fill="currentColor" stroke="none" />
+          </svg>
+          <p class="mt-0">La vidéo du spectacle sera bientôt disponible.</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Crédits -->
+  {data.credits && (
+    <section class="section section--white" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">La création</span>
+          <h2>Crédits</h2>
+        </div>
+        <div class="prose reveal">
+          <p style="white-space:pre-line">{data.credits}</p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Résidences & tournées -->
+  <section class="section section--white" style="padding-top:0">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Parcours</span>
+        <h2>Résidences & tournée</h2>
+      </div>
+      {data.residences.length > 0 && (
+        <div class="reveal" style="margin-bottom:2rem">
+          <h3 style="font-size:1.15rem">Ils nous ont soutenus / accueillis en résidence</h3>
+          <ul class="chip-list">
+            {data.residences.map((r) => <li>{r}</li>)}
+          </ul>
+        </div>
+      )}
+      {data.joue.length > 0 && (
+        <div class="reveal">
+          <h3 style="font-size:1.15rem">On y a joué</h3>
+          <ul class="chip-list">
+            {data.joue.map((j) => <li>{j}</li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Dossier artistique -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Pour les programmateurs</span>
+        <h2>Dossier artistique</h2>
+      </div>
+      {data.dossier ? (
+        <a class="btn btn--plum btn--arrow reveal" href={data.dossier} download>
+          Télécharger le dossier artistique
+        </a>
+      ) : (
+        <p class="reveal" style="color:var(--muted)">
+          Le dossier artistique sera bientôt disponible. Contactez-nous pour le recevoir par email.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <!-- Galerie -->
+  {data.galerie.length > 0 && (
+    <section class="section section--white" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Souvenirs</span>
+          <h2>Galerie photos</h2>
+        </div>
+        <div class="gallery">
+          {data.galerie.map((src, i) => (
+            <img class="reveal" src={src} alt={`Photo ${i + 1} — ${data.title}`} loading="lazy" />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTABand
+    kicker="Programmation"
+    title={`Je veux programmer ${data.title}`}
+    text="Ce spectacle vous intéresse ? Nous intervenons partout en France. Contactez-nous pour une demande de devis ou pour en savoir plus (conditions techniques, jauge, tarifs)."
+    buttons={[{ label: 'Je contacte ML’Art', href: '/contact/' }]}
+  />
+</Base>

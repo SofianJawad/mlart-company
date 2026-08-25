@@ -1,0 +1,81 @@
+---
+/**
+ * Pied de page : liens, coordonnées (éditables via le CMS) et mentions.
+ */
+import Logo from './Logo.astro';
+import { getCollection } from 'astro:content';
+
+const contactEntry = (await getCollection('settings')).find((e) => e.slug === 'contact');
+const c = contactEntry?.data;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <Logo />
+        <p class="footer-note">
+          Compagnie d'arts de la scène des Monts du Lyonnais — spectacles, créations
+          sur-mesure, prestations événementielles et ateliers de pratique artistique,
+          partout en France.
+        </p>
+      </div>
+
+      <div>
+        <h3>Le site</h3>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/qui-sommes-nous/">Qui sommes-nous ?</a></li>
+          <li><a href="/spectacles/">Nos spectacles</a></li>
+          <li><a href="/evenementiel/">Événementiel &amp; sur-mesure</a></li>
+          <li><a href="/ateliers/">Les ateliers</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Nos spectacles</h3>
+        <ul>
+          <li><a href="/spectacles/reveries/">Rêveries</a></li>
+          <li><a href="/spectacles/cabaret/">Notre Cabaret moderne</a></li>
+          <li><a href="/spectacles/ascenseur/">L'Ascenseur</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          {c?.email && (
+            <li><a href={`mailto:${c.email}`}>{c.email}</a></li>
+          )}
+          {c?.phone && <li>{c.phone}</li>}
+          {c?.address && <li>{c.address}</li>}
+        </ul>
+        <div class="social-row" style="margin-top:1rem">
+          {c?.instagram && (
+            <a href={c.instagram} target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          )}
+          {c?.facebook && (
+            <a href={c.facebook} target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.5V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z" />
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} ML'Art Company — Association loi 1901. Tous droits réservés.</span>
+      <span>Compagnie d'arts de la scène · Monts du Lyonnais</span>
+    </div>
+  </div>
+</footer>

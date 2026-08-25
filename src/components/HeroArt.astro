@@ -1,0 +1,53 @@
+---
+/**
+ * Décor artistique réutilisé dans les héros :
+ * arcs de scène, projecteurs et poussières d'étoiles.
+ */
+const { id = 'art' } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 1440 760"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+>
+  <!-- arcs de scène -->
+  <path d="M-60 640 C 300 120, 1140 120, 1500 640" fill="none" stroke="rgba(232,205,139,0.28)" stroke-width="2" />
+  <path d="M-60 700 C 340 260, 1100 260, 1500 700" fill="none" stroke="rgba(232,205,139,0.16)" stroke-width="2" />
+  <path d="M180 -80 C 420 220, 1020 220, 1260 -80" fill="none" stroke="rgba(232,205,139,0.12)" stroke-width="1.5" />
+
+  <!-- halo doré -->
+  <circle cx="1180" cy="150" r="180" fill="rgba(201,162,75,0.10)" />
+  <circle cx="1180" cy="150" r="110" fill="rgba(201,162,75,0.08)" />
+  <circle cx="240" cy="620" r="140" fill="rgba(138,48,68,0.28)" />
+
+  <!-- projecteurs -->
+  <polygon points="150,0 250,0 330,520 190,520" fill="rgba(232,205,139,0.06)" />
+  <polygon points="1240,0 1330,0 1270,560 1150,560" fill="rgba(232,205,139,0.07)" />
+
+  <!-- poussières d'étoiles -->
+  <g fill="rgba(232,205,139,0.9)">
+    <circle cx="120" cy="150" r="2.5" />
+    <circle cx="330" cy="90" r="2" />
+    <circle cx="520" cy="170" r="1.6" />
+    <circle cx="700" cy="80" r="2.4" />
+    <circle cx="900" cy="140" r="1.8" />
+    <circle cx="1050" cy="70" r="2" />
+    <circle cx="1350" cy="260" r="2.2" />
+    <circle cx="80" cy="380" r="1.8" />
+    <circle cx="420" cy="330" r="2.2" />
+    <circle cx="760" cy="260" r="1.7" />
+    <circle cx="1000" cy="360" r="2.1" />
+    <circle cx="1280" cy="420" r="1.8" />
+    <circle cx="600" cy="450" r="1.6" />
+    <circle cx="240" cy="500" r="1.9" />
+  </g>
+
+  <!-- étoiles à quatre branches -->
+  <g fill="rgba(232,205,139,0.85)">
+    <path d="M210 210l4.5 9 9 4.5-9 4.5-4.5 9-4.5-9-9-4.5 9-4.5z" />
+    <path d="M880 220l3.5 7 7 3.5-7 3.5-3.5 7-3.5-7-7-3.5 7-3.5z" />
+    <path d="M1180 480l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" />
+    <path d="M520 560l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" />
+  </g>
+</svg>

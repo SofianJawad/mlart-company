@@ -1,0 +1,43 @@
+---
+/**
+ * Icônes des prestations événementielles (théâtre, danse, aérien, sur-mesure, cinéma)
+ */
+interface Props {
+  icon?: string;
+}
+
+const { icon = 'sparkle' } = Astro.props;
+---
+
+{
+  icon === 'theater' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+      <path d="M4 4v16M20 4v16" />
+      <path d="M4 4c5 2.5 5 13.5 0 16M20 4c-5 2.5-5 13.5 0 16" />
+      <path d="M4 4h16M4 20h16" />
+    </svg>
+  ) : icon === 'danse' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="4.6" r="2.3" />
+      <path d="M12 7v6.4" />
+      <path d="M12 8.6 7.6 11M12 8.6l4.4 2.4" />
+      <path d="M12 13.4 8.4 19M12 13.4l3.6 5.6" />
+    </svg>
+  ) : icon === 'aerial' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+      <path d="M3 4.5h18" />
+      <path d="M7 4.5V10M17 4.5V10" />
+      <circle cx="12" cy="14.5" r="5.2" />
+    </svg>
+  ) : icon === 'cinema' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3.5" y="6" width="17" height="13.5" rx="2" />
+      <path d="M3.5 10.5h17" />
+      <path d="M3.5 10.5 8 6M10 10.5 14.5 6M16.5 10.5 21 6" />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3l2.3 6.2L21 11.5l-6.7 2.3L12 20l-2.3-6.2L3 11.5l6.7-2.3z" />
+    </svg>
+  )
+}

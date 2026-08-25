@@ -1,0 +1,16 @@
+{
+  "name": "mlart-company-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine de ML'Art Company — compagnie d'arts de la scène (Monts du Lyonnais). Astro + Decap CMS.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "admin": "npx decap-server"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}

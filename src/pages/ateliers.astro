@@ -1,0 +1,73 @@
+---
+/**
+ * Les ateliers — pratique artistique pour tous les publics
+ */
+import Base from '../layouts/Base.astro';
+import HeroArt from '../components/HeroArt.astro';
+import CTABand from '../components/CTABand.astro';
+import { getCollection, render } from 'astro:content';
+
+const ateliers = (await getCollection('ateliers')).sort((a, b) => a.data.order - b.data.order);
+
+// Rendu du contenu markdown pré-calculé (Astro n'affiche pas de promesses)
+const renderedAteliers = await Promise.all(
+  ateliers.map(async (a) => {
+    const { Content } = await render(a);
+    return { data: a.data, Content };
+  }),
+);
+---
+
+<Base
+  title="Les ateliers — Pratique artistique pour tous"
+  description="Ateliers scolaires, ateliers d'entreprise, stages de pratique artistique : danse, théâtre, chant, cirque aérien, pour favoriser la créativité, l'expression et la confiance en soi."
+>
+  <section class="page-hero">
+    <div class="page-hero__art"><HeroArt /></div>
+    <div class="container page-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">→</span>
+        <span aria-current="page">Les ateliers</span>
+      </nav>
+      <span class="kicker">La transmission</span>
+      <h1>Expérimenter, apprendre, prendre sa place sur scène</h1>
+      <p class="lead">
+        Des ateliers de pratique artistique pour tous les publics — scolaires, entreprises, stages —
+        qui favorisent la créativité, l'expression, la confiance en soi ou la cohésion de groupe.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <div class="card-grid">
+        {
+          renderedAteliers.map((atelier, i) => (
+            <article class="card reveal">
+              <div class="card__media">
+                <img
+                  src={atelier.data.image || '/images/blocs/ateliers.svg'}
+                  alt={atelier.data.title}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+              <div class="card__body">
+                <span class="kicker">{atelier.data.publics}</span>
+                <h2>{atelier.data.title}</h2>
+                <atelier.Content />
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    kicker="Ateliers"
+    title="Un atelier dans votre structure ?"
+    text="École, entreprise, association, collectivité : nos artistes se déplacent partout en France pour transmettre leur passion et faire monter vos équipes ou vos élèves sur scène."
+    buttons={[{ label: 'Je contacte ML’Art', href: '/contact/' }]}
+  />
+</Base>

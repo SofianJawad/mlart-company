@@ -1,0 +1,107 @@
+---
+/**
+ * En-tête : navigation principale + menu mobile
+ */
+import Logo from './Logo.astro';
+
+const { currentPath = '/' } = Astro.props;
+
+const navItems = [
+  { label: 'Accueil', href: '/' },
+  { label: 'Qui sommes-nous ?', href: '/qui-sommes-nous/' },
+  {
+    label: 'Nos spectacles',
+    href: '/spectacles/',
+    children: [
+      { label: 'Tous nos spectacles', href: '/spectacles/' },
+      { label: 'Rêveries', href: '/spectacles/reveries/' },
+      { label: 'Notre Cabaret moderne', href: '/spectacles/cabaret/' },
+      { label: "L'Ascenseur", href: '/spectacles/ascenseur/' },
+    ],
+  },
+  { label: 'Événementiel & sur-mesure', href: '/evenementiel/' },
+  { label: 'Ateliers', href: '/ateliers/' },
+  { label: 'Contact', href: '/contact/' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath === href || currentPath.startsWith(href);
+}
+
+function isChildActive(href: string): boolean {
+  return currentPath.startsWith(href) && href !== '/spectacles/';
+}
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <Logo />
+
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        {
+          navItems.map((item) =>
+            item.children ? (
+              <li class="has-dropdown">
+                <a
+                  href={item.href}
+                  aria-current={isActive(item.href) || item.children.some((c) => currentPath.startsWith(c.href)) ? 'page' : undefined}
+                >
+                  {item.label} <span aria-hidden="true">▾</span>
+                </a>
+                <ul class="dropdown">
+                  {item.children.map((child) => (
+                    <li>
+                      <a href={child.href} aria-current={isChildActive(child.href) ? 'page' : undefined}>
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li>
+                <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="btn btn--gold" href="/contact/">Programmer</a>
+    </div>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+          {item.children && (
+            <ul class="submenu">
+              {item.children.map((child) => (
+                <li>
+                  <a href={child.href}>{child.label}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+  <div class="nav-cta-mobile">
+    <a class="btn btn--gold" href="/contact/">Programmer un spectacle</a>
+  </div>
+</div>

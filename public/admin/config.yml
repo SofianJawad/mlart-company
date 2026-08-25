@@ -1,0 +1,114 @@
+# ---------------------------------------------------------------------------
+# Configuration du panneau d'administration Decap CMS (gratuit)
+# Tous les contenus édités ici sont enregistrés dans le dépôt Git et le site
+# est reconstruit automatiquement par Netlify.
+#
+# ⚠️ À personnaliser après le premier déploiement :
+#   site_url → l'adresse définitive du site (ex. https://www.mlart-company.fr)
+# ---------------------------------------------------------------------------
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Permet de tester le panneau d'administration en local (npm run admin)
+local_backend: true
+
+site_url: https://mlart-company.netlify.app
+logo_url: /favicon.svg
+locale: fr
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  # ---------------- SPECTACLES ----------------
+  - name: "spectacles"
+    label: "Spectacles"
+    label_singular: "Spectacle"
+    folder: "src/content/spectacles"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{public}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Accroche (sous le titre)", name: "tagline", widget: "string" }
+      - { label: "Image principale", name: "heroImage", widget: "image" }
+      - { label: "Public", name: "public", widget: "string" }
+      - { label: "Genre", name: "genre", widget: "string" }
+      - { label: "Nombre d'artistes", name: "artistes", widget: "string" }
+      - { label: "Durée", name: "duree", widget: "string" }
+      - { label: "Crédits (écriture, mise en scène, jeu)", name: "credits", widget: "text", required: false }
+      - { label: "Lien vidéo (YouTube ou Vimeo)", name: "video", widget: "string", required: false }
+      - { label: "Dossier artistique (PDF)", name: "dossier", widget: "file", required: false }
+      - { label: "Accueils en résidence", name: "residences", widget: "list", required: false }
+      - { label: "Lieux où le spectacle a été joué", name: "joue", widget: "list", required: false }
+      - label: "Galerie photos"
+        name: "galerie"
+        widget: "list"
+        required: false
+        field: { label: "Photo", name: "image", widget: "image" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+      - { label: "Description du spectacle", name: "body", widget: "markdown", required: false }
+
+  # ---------------- PRESTATIONS ÉVÉNEMENTIELLES ----------------
+  - name: "prestations"
+    label: "Prestations événementielles"
+    label_singular: "Prestation"
+    folder: "src/content/prestations"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - label: "Icône"
+        name: "icon"
+        widget: "select"
+        default: "sparkle"
+        options:
+          - { label: "Théâtre", value: "theater" }
+          - { label: "Danse", value: "danse" }
+          - { label: "Artistes aériennes", value: "aerial" }
+          - { label: "Sur-mesure", value: "custom" }
+          - { label: "Soirée cinéma", value: "cinema" }
+          - { label: "Étoile (autre)", value: "sparkle" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+      - { label: "Description", name: "body", widget: "markdown", required: false }
+
+  # ---------------- ATELIERS ----------------
+  - name: "ateliers"
+    label: "Ateliers"
+    label_singular: "Atelier"
+    folder: "src/content/ateliers"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Publics concernés", name: "publics", widget: "string", required: false }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+      - { label: "Description", name: "body", widget: "markdown", required: false }
+
+  # ---------------- PARTENAIRES ----------------
+  - name: "partenaires"
+    label: "Partenaires (Ils nous ont fait confiance)"
+    label_singular: "Partenaire"
+    folder: "src/content/partenaires"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nom", name: "name", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image" }
+      - { label: "Lien (facultatif)", name: "url", widget: "string", required: false }
+
+  # ---------------- PARAMÈTRES ----------------
+  - name: "settings"
+    label: "Paramètres du site"
+    files:
+      - name: "contact"
+        label: "Coordonnées de contact & réseaux"
+        file: "src/content/settings/contact.md"
+        fields:
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Téléphone", name: "phone", widget: "string" }
+          - { label: "Adresse / zone d'intervention", name: "address", widget: "string" }
+          - { label: "Lien Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "Lien Facebook", name: "facebook", widget: "string", required: false }

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="L'Ascenseur — deux portes et une lumière">
+  <defs>
+    <linearGradient id="wallL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#26262e"/>
+      <stop offset="1" stop-color="#33333e"/>
+    </linearGradient>
+    <linearGradient id="wallR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#23232b"/>
+      <stop offset="1" stop-color="#1c1c23"/>
+    </linearGradient>
+    <linearGradient id="slit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3e5c3"/>
+      <stop offset="1" stop-color="#c9a24b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#wallL)"/>
+  <rect x="600" width="600" height="900" fill="url(#wallR)"/>
+  <line x1="600" y1="0" x2="600" y2="900" stroke="#0f0f14" stroke-width="6"/>
+  <rect x="330" y="120" width="238" height="640" rx="6" fill="#d9cfc0"/>
+  <rect x="632" y="120" width="238" height="640" rx="6" fill="#d9cfc0"/>
+  <rect x="330" y="120" width="238" height="640" rx="6" fill="none" stroke="#c9a24b" stroke-width="5"/>
+  <rect x="632" y="120" width="238" height="640" rx="6" fill="none" stroke="#c9a24b" stroke-width="5"/>
+  <circle cx="449" cy="300" r="26" fill="#c9a24b" opacity="0.9"/>
+  <circle cx="751" cy="300" r="26" fill="#c9a24b" opacity="0.9"/>
+  <rect x="592" y="120" width="16" height="640" fill="url(#slit)"/>
+  <rect x="592" y="120" width="16" height="640" fill="#f3e5c3" opacity="0.55"/>
+  <rect x="420" y="120" width="12" height="90" rx="6" fill="#a99c8b"/>
+  <rect x="768" y="120" width="12" height="90" rx="6" fill="#a99c8b"/>
+  <rect x="500" y="746" width="200" height="10" rx="5" fill="#c9a24b" opacity="0.5"/>
+  <g fill="#f7ecd8" opacity="0.5">
+    <circle cx="180" cy="220" r="4"/>
+    <circle cx="1010" cy="180" r="4"/>
+    <circle cx="120" cy="520" r="3.5"/>
+    <circle cx="1080" cy="560" r="3.5"/>
+    <circle cx="260" cy="700" r="3"/>
+    <circle cx="950" cy="720" r="3"/>
+  </g>
+</svg>

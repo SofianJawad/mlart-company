@@ -1,0 +1,16 @@
+# Configuration Netlify (gratuit)
+# Le site est construit automatiquement à chaque mise à jour de contenu
+# depuis le panneau d'administration (https://www.mon-site.fr/admin)
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# /admin doit servir l'application Decap CMS
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
