@@ -1,27 +1,27 @@
 ---
 /**
- * En-tête : navigation principale + menu mobile
+ * En-tête : navigation principale + menu mobile.
+ * Le sous-menu « Nos spectacles » est généré dynamiquement depuis la collection
+ * du CMS : un spectacle ajouté dans le panneau apparaît automatiquement ici.
  */
 import Logo from './Logo.astro';
+import { getCollection } from 'astro:content';
 
 const { currentPath = '/' } = Astro.props;
+
+const shows = (await getCollection('spectacles')).sort((a, b) => a.data.order - b.data.order);
+
+const showChildren = [
+  { label: 'Tous nos spectacles', href: '/spectacles/' },
+  ...shows.map((s) => ({ label: s.data.title, href: `/spectacles/${s.slug}/` })),
+];
 
 const navItems = [
   { label: 'Accueil', href: '/' },
   { label: 'Qui sommes-nous ?', href: '/qui-sommes-nous/' },
-  {
-    label: 'Nos spectacles',
-    href: '/spectacles/',
-    children: [
-      { label: 'Tous nos spectacles', href: '/spectacles/' },
-      { label: 'Rêveries', href: '/spectacles/reveries/' },
-      { label: 'Notre Cabaret moderne', href: '/spectacles/cabaret/' },
-      { label: "L'Ascenseur", href: '/spectacles/ascenseur/' },
-    ],
-  },
+  { label: 'Nos spectacles', href: '/spectacles/', children: showChildren },
   { label: 'Événementiel & sur-mesure', href: '/evenementiel/' },
   { label: 'Ateliers', href: '/ateliers/' },
-  { label: 'Contact', href: '/contact/' },
 ];
 
 function isActive(href: string): boolean {
@@ -30,7 +30,8 @@ function isActive(href: string): boolean {
 }
 
 function isChildActive(href: string): boolean {
-  return currentPath.startsWith(href) && href !== '/spectacles/';
+  if (href === '/spectacles/') return currentPath === '/spectacles/';
+  return currentPath.startsWith(href);
 }
 ---
 
@@ -46,15 +47,25 @@ function isChildActive(href: string): boolean {
               <li class="has-dropdown">
                 <a
                   href={item.href}
-                  aria-current={isActive(item.href) || item.children.some((c) => currentPath.startsWith(c.href)) ? 'page' : undefined}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
                 >
-                  {item.label} <span aria-hidden="true">▾</span>
+                  {item.label}
+                  <span class="caret" aria-hidden="true">
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                      <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
                 </a>
                 <ul class="dropdown">
                   {item.children.map((child) => (
                     <li>
-                      <a href={child.href} aria-current={isChildActive(child.href) ? 'page' : undefined}>
-                        {child.label}
+                      <a
+                        href={child.href}
+                        class={child.href === '/spectacles/' ? 'dropdown__all' : undefined}
+                        aria-current={isChildActive(child.href) ? 'page' : undefined}
+                      >
+                        <span>{child.label}</span>
+                        {child.href === '/spectacles/' && <span class="dropdown__arrow" aria-hidden="true">→</span>}
                       </a>
                     </li>
                   ))}

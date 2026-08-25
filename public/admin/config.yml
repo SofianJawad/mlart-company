@@ -84,6 +84,7 @@ collections:
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Publics concernés", name: "publics", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
       - { label: "Description", name: "body", widget: "markdown", required: false }
 
