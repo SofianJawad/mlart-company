@@ -33,13 +33,19 @@ const currentPath = Astro.url.pathname;
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="fr_FR" />
 
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      // Netlify Identity : les liens d'invitation reçus par email arrivent avec un
-      // jeton dans l'URL (ex. #confirmation_token=…). Le widget qui traite ce jeton
-      // n'étant chargé que sur /admin/, on redirige vers /admin/ pour finaliser la
-      // création du compte (choix du mot de passe).
-      if (/#[^#]*(confirmation_token|invite_token|recovery_token)=/.test(window.location.hash)) {
-        window.location.replace('/admin/' + window.location.hash);
+      // Netlify Identity : le lien d'invitation reçu par email pointe vers l'accueil
+      // avec un jeton (ex. #invite_token=…). Le widget traite ce jeton sur la page
+      // d'atterrissage, puis on redirige vers /admin/ une fois la connexion établie.
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
       }
     </script>
 
