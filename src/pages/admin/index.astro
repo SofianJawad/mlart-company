@@ -14,8 +14,9 @@
   <body>
     <!-- Panneau d'administration Decap CMS (gratuit et open source).
          En local : lancer `npm run admin` dans un second terminal.
-         En production : connexion via Netlify Identity. -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+         En production : connexion via Netlify Identity.
+         NB : is:inline obligatoire pour qu'Astro laisse ces scripts intacts. -->
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
