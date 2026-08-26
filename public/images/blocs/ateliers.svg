@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Ateliers — pratique artistique collective">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#221b1e"/>
+      <stop offset="1" stop-color="#0e0b0d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <!-- soleil créatif -->
+  <circle cx="600" cy="430" r="150" fill="#c9a24b"/>
+  <circle cx="600" cy="430" r="92" fill="#faf4ec" opacity="0.55"/>
+  <g stroke="#c9a24b" stroke-width="4" opacity="0.7">
+    <line x1="600" y1="180" x2="600" y2="250"/>
+    <line x1="310" y1="430" x2="380" y2="430"/>
+    <line x1="890" y1="430" x2="820" y2="430"/>
+    <line x1="400" y1="230" x2="450" y2="280"/>
+    <line x1="800" y1="230" x2="750" y2="280"/>
+  </g>
+  <!-- ligne de scène -->
+  <path d="M120 980 C 380 900, 820 900, 1080 980" fill="none" stroke="#ead9a3" stroke-width="5" opacity="0.8"/>
+  <!-- figures stylisées -->
+  <circle cx="470" cy="780" r="40" fill="#9e2334" opacity="0.9"/>
+  <circle cx="600" cy="760" r="40" fill="#faf4ec" opacity="0.85"/>
+  <circle cx="730" cy="780" r="40" fill="#c9a24b"/>
+  <!-- points -->
+  <g fill="#ead9a3" opacity="0.7">
+    <circle cx="220" cy="620" r="10"/>
+    <circle cx="980" cy="620" r="10"/>
+    <circle cx="600" cy="1040" r="9"/>
+  </g>
+</svg>

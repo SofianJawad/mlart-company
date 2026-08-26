@@ -106,7 +106,7 @@ const marqueePartners = [...partners, ...partners];
 
         <a class="card reveal" href="/ateliers/">
           <div class="card__media">
-            <img src="/images/blocs/ateliers.jpg" alt="Ateliers — pratique artistique collective" loading="lazy" />
+            <img src="/images/blocs/ateliers.svg" alt="Ateliers — pratique artistique collective" loading="lazy" />
           </div>
           <div class="card__body">
             <h2>Ateliers</h2>
@@ -133,9 +133,17 @@ const marqueePartners = [...partners, ...partners];
         <div class="partners-band reveal">
           <div class="partners-track">
             {
-              marqueePartners.map((p) => (
-                <img src={p.data.logo} alt={p.data.name} loading="lazy" />
-              ))
+              marqueePartners.map((p) => {
+                const isImageLogo = !p.data.logo.endsWith('.svg');
+                return (
+                  <div class="partner-tile">
+                    {isImageLogo && <img src={p.data.logo} alt={p.data.name} loading="lazy" />}
+                    <span class={`partner-tile__name${isImageLogo ? '' : ' partner-tile__name--only'}`}>
+                      {p.data.name}
+                    </span>
+                  </div>
+                );
+              })
             }
           </div>
         </div>
