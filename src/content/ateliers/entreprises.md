@@ -1,7 +1,6 @@
 ---
 title: "Ateliers d'entreprise"
 publics: "Entreprises, collectivités, associations"
-image: "/images/blocs/ateliers.jpg"
 order: 2
 ---
 

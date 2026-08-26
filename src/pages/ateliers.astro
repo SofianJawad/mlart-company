@@ -44,14 +44,16 @@ const renderedAteliers = await Promise.all(
       <div class="card-grid">
         {
           renderedAteliers.map((atelier, i) => (
-            <article class="card reveal">
-              <div class="card__media">
-                <img
-                  src={atelier.data.image || '/images/blocs/ateliers.jpg'}
-                  alt={atelier.data.title}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
-              </div>
+            <article class={`card reveal${atelier.data.image ? '' : ' card--plain'}`}>
+              {atelier.data.image && (
+                <div class="card__media">
+                  <img
+                    src={atelier.data.image}
+                    alt={atelier.data.title}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </div>
+              )}
               <div class="card__body">
                 <span class="kicker">{atelier.data.publics}</span>
                 <h2>{atelier.data.title}</h2>

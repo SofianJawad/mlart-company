@@ -773,7 +773,7 @@ p {
 
 .card__media {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background: var(--cream-dark);
 }
@@ -851,6 +851,11 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
+}
+
+/* Carte sans photo : liseré doré pour rester soignée */
+.card--plain {
+  border-top: 4px solid var(--gold);
 }
 
 .card__link::after {
@@ -948,7 +953,7 @@ p {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
 }
 
 .show-hero__media img {
@@ -1088,7 +1093,7 @@ p {
 
 .gallery img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center 30%;
   border-radius: var(--radius-sm);

@@ -1,7 +1,6 @@
 ---
 title: "Stages et pratiques amateurs"
 publics: "Tout public, à partir de 8 ans"
-image: "/images/blocs/ateliers.jpg"
 order: 3
 ---
 

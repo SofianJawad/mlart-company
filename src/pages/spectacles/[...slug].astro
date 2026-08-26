@@ -36,6 +36,25 @@ function videoSrc(url: string | undefined): { kind: 'embed' | 'file'; src: strin
 const video = videoSrc(data.video);
 const videoType = data.video?.match(/\.(mp4|webm|ogv|mov)/i)?.[1] || 'mp4';
 
+// Cadrage fin des photos de la galerie (têtes dans le tiers supérieur)
+const galleryPosMap: Record<string, string> = {
+  'reveries-1.jpg': '50% 22%',
+  'reveries-2.jpg': '50% 25%',
+  'reveries-3.jpg': '50% 26%',
+  'reveries-4.jpg': '50% 30%',
+  'reveries-5.jpg': '50% 25%',
+  'reveries-6.jpg': '50% 30%',
+  'ascenseur-1.jpg': '50% 28%',
+  'ascenseur-2.jpg': '50% 22%',
+  'ascenseur-3.jpg': '50% 22%',
+  'ascenseur-4.jpg': '50% 30%',
+};
+
+function galleryPos(src: string): string {
+  const base = src.split('/').pop() || '';
+  return galleryPosMap[base] || 'center 30%';
+}
+
 const metaItems = [
   { label: 'Public', value: data.public },
   { label: 'Genre', value: data.genre },
@@ -103,41 +122,35 @@ const metaItems = [
     </div>
   </section>
 
-  <!-- Vidéo -->
-  <section class="section section--cream" style="padding-top:0">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="kicker">En images</span>
-        <h2>Vidéo</h2>
+  <!-- Vidéo (seulement si une vidéo est fournie) -->
+  {video && (
+    <section class="section section--cream" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">En images</span>
+          <h2>Vidéo</h2>
+        </div>
+        {video.kind === 'embed' ? (
+          <div class="video-frame reveal">
+            <iframe
+              src={video.src}
+              title={`Vidéo — ${data.title}`}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        ) : (
+          <div class="video-frame reveal">
+            <video controls preload="metadata" poster={data.heroImage}>
+              <source src={video.src} type={`video/${videoType}`} />
+              Votre navigateur ne prend pas en charge la lecture de vidéos.
+            </video>
+          </div>
+        )}
       </div>
-      {video?.kind === 'embed' ? (
-        <div class="video-frame reveal">
-          <iframe
-            src={video.src}
-            title={`Vidéo — ${data.title}`}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-      ) : video?.kind === 'file' ? (
-        <div class="video-frame reveal">
-          <video controls preload="metadata" poster={data.heroImage}>
-            <source src={video.src} type={`video/${videoType}`} />
-            Votre navigateur ne prend pas en charge la lecture de vidéos.
-          </video>
-        </div>
-      ) : (
-        <div class="video-placeholder reveal">
-          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M10 8.8v6.4l5-3.2z" fill="currentColor" stroke="none" />
-          </svg>
-          <p class="mt-0">La vidéo du spectacle sera bientôt disponible.</p>
-        </div>
-      )}
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- Crédits -->
   {data.credits && (
@@ -209,7 +222,13 @@ const metaItems = [
         </div>
         <div class="gallery">
           {data.galerie.map((src, i) => (
-            <img class="reveal" src={src} alt={`Photo ${i + 1} — ${data.title}`} loading="lazy" />
+            <img
+              class="reveal"
+              src={src}
+              alt={`Photo ${i + 1} — ${data.title}`}
+              loading="lazy"
+              style={`object-position: ${galleryPos(src)}`}
+            />
           ))}
         </div>
       </div>
