@@ -1,5 +1,5 @@
 ---
 name: "Herbalife"
-logo: "/images/partenaires/herbalife.svg"
+logo: "/images/partenaires/herbalife-logo.png"
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Ateliers scolaires"
 publics: "Écoles, collèges, lycées"
+image: "/images/ateliers/scolaires.jpg"
 order: 1
 ---
 

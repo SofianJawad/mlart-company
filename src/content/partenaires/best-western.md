@@ -1,5 +1,5 @@
 ---
 name: "Best Western"
-logo: "/images/partenaires/best-western.svg"
+logo: "/images/partenaires/best-western-logo.png"
 ---
 

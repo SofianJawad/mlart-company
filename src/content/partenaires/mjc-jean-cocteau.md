@@ -1,5 +1,5 @@
 ---
 name: "MJC Jean Cocteau"
-logo: "/images/partenaires/mjc-jean-cocteau.svg"
+logo: "/images/partenaires/mjcjeancocteau-logo.jpg"
 ---
 
