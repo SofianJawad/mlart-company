@@ -1,11 +1,12 @@
 ---
 title: "Notre Cabaret moderne"
 tagline: "Un cabaret moderne et audacieux 100 % féminin, où chant, danse et pole dance se rencontrent"
-heroImage: "/images/spectacles/cabaret.svg"
+heroImage: "/images/spectacles/cabaret-1.jpg"
 public: "Public adulte"
 genre: "Danse, chant, pole dance"
 artistes: "Modulable de 3 à 9 artistes"
 duree: "Modulable jusqu'à 1h30"
+video: "/videos/cabaret.mp4"
 credits: |-
   Écriture et mise en scène : ML'Art Company
   Jeu : les artistes de la compagnie
@@ -18,9 +19,11 @@ joue:
   - "MJC Jean Cocteau — Ville de Saint-Priest"
   - "Complexe Arnaud de Bertier — Ville de Manom"
 galerie:
-  - "/images/spectacles/cabaret-1.svg"
-  - "/images/spectacles/cabaret-2.svg"
-  - "/images/spectacles/cabaret-3.svg"
+  - "/images/spectacles/cabaret-1.jpg"
+  - "/images/spectacles/cabaret-2.jpg"
+  - "/images/spectacles/cabaret-3.jpg"
+  - "/images/spectacles/cabaret-4.jpg"
+  - "/images/spectacles/cabaret-5.jpg"
 order: 2
 ---
 

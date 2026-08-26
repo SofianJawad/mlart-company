@@ -15,7 +15,7 @@ backend:
 local_backend: true
 
 site_url: https://mlart-company.netlify.app
-logo_url: /favicon.svg
+logo_url: /favicon.png
 locale: fr
 
 media_folder: "public/images/uploads"
@@ -39,7 +39,7 @@ collections:
       - { label: "Nombre d'artistes", name: "artistes", widget: "string" }
       - { label: "Durée", name: "duree", widget: "string" }
       - { label: "Crédits (écriture, mise en scène, jeu)", name: "credits", widget: "text", required: false }
-      - { label: "Lien vidéo (YouTube ou Vimeo)", name: "video", widget: "string", required: false }
+      - { label: "Vidéo (lien YouTube/Vimeo ou fichier .mp4)", name: "video", widget: "string", required: false }
       - { label: "Dossier artistique (PDF)", name: "dossier", widget: "file", required: false }
       - { label: "Accueils en résidence", name: "residences", widget: "list", required: false }
       - { label: "Lieux où le spectacle a été joué", name: "joue", widget: "list", required: false }

@@ -1,22 +1,23 @@
 /* ==========================================================================
    ML'Art Company — Design system
-   Palette : prune profonde, or, crème — univers arts de la scène
+   Palette : noir de scène, or, rouge scène, crème — univers artistique & théâtral
    ========================================================================== */
 
 :root {
-  --plum-950: #211020;
-  --plum-900: #2d152e;
-  --plum-800: #3c1f3d;
-  --plum-700: #4e2b4d;
-  --plum-600: #61385f;
+  --plum-950: #0e0b0d;
+  --plum-900: #171215;
+  --plum-800: #221b1e;
+  --plum-700: #33282c;
+  --plum-600: #46383d;
   --gold: #c9a24b;
-  --gold-light: #e8cd8b;
-  --gold-pale: #f3e5c3;
-  --cream: #faf5ec;
-  --cream-dark: #efe3d0;
-  --ink: #2b2029;
-  --muted: #6e5e68;
-  --bordeaux: #8a3044;
+  --gold-light: #ead9a3;
+  --gold-pale: #f5e8c6;
+  --cream: #faf4ec;
+  --cream-dark: #ece0cb;
+  --ink: #211b1d;
+  --muted: #6c6065;
+  --bordeaux: #9e2334;
+  --red: #9e2334;
   --white: #ffffff;
 
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -24,8 +25,8 @@
 
   --radius: 18px;
   --radius-sm: 12px;
-  --shadow-soft: 0 18px 45px -22px rgba(43, 22, 42, 0.35);
-  --shadow-card: 0 10px 30px -14px rgba(43, 22, 42, 0.28);
+  --shadow-soft: 0 18px 45px -22px rgba(8, 6, 7, 0.5);
+  --shadow-card: 0 10px 30px -14px rgba(8, 6, 7, 0.35);
   --container: 1180px;
   --gutter: clamp(20px, 4vw, 32px);
   --section-pad: clamp(56px, 9vw, 110px);
@@ -161,7 +162,7 @@ p {
 .section--plum {
   background:
     radial-gradient(1100px 500px at 85% -10%, rgba(201, 162, 75, 0.16), transparent 60%),
-    radial-gradient(900px 600px at -10% 110%, rgba(138, 48, 68, 0.35), transparent 55%),
+    radial-gradient(900px 600px at -10% 110%, rgba(158, 35, 52, 0.4), transparent 55%),
     linear-gradient(160deg, var(--plum-900), var(--plum-950) 70%);
   color: var(--cream);
 }
@@ -344,10 +345,14 @@ p {
   color: var(--cream);
 }
 
-.brand__mark {
-  width: 42px;
-  height: 42px;
+.brand__logo {
+  width: 50px;
+  height: 50px;
   flex: none;
+  object-fit: cover;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 4px;
 }
 
 .brand__name {
@@ -630,7 +635,7 @@ p {
   color: var(--cream);
   background:
     radial-gradient(900px 480px at 80% -10%, rgba(201, 162, 75, 0.22), transparent 60%),
-    radial-gradient(700px 520px at -10% 100%, rgba(138, 48, 68, 0.4), transparent 60%),
+    radial-gradient(700px 520px at -10% 100%, rgba(158, 35, 52, 0.45), transparent 60%),
     linear-gradient(155deg, var(--plum-800) 0%, var(--plum-900) 45%, var(--plum-950) 100%);
   padding: calc(var(--header-h) + clamp(56px, 9vw, 110px)) 0 clamp(56px, 8vw, 96px);
 }
@@ -880,7 +885,7 @@ p {
   color: var(--cream);
   background:
     radial-gradient(700px 320px at 90% -20%, rgba(201, 162, 75, 0.25), transparent 60%),
-    radial-gradient(500px 340px at 0% 120%, rgba(138, 48, 68, 0.45), transparent 60%),
+    radial-gradient(500px 340px at 0% 120%, rgba(158, 35, 52, 0.5), transparent 60%),
     linear-gradient(150deg, var(--plum-700), var(--plum-950));
   box-shadow: var(--shadow-soft);
 }
@@ -1017,6 +1022,15 @@ p {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.video-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
 }
 
 .video-placeholder {

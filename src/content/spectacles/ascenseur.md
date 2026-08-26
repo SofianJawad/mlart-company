@@ -1,7 +1,7 @@
 ---
 title: "L'Ascenseur"
 tagline: "Une comédie aussi drôle qu'émouvante, où les rencontres les plus inattendues changent le cours d'une vie"
-heroImage: "/images/spectacles/ascenseur.svg"
+heroImage: "/images/spectacles/ascenseur-1.jpg"
 public: "Tout public à partir de 10 ans"
 genre: "Théâtre"
 artistes: "2 artistes"
@@ -23,9 +23,10 @@ joue:
   - "Amphithéâtre des Brosses — Communay"
   - "Association Vill'Ages — Saint-Foy-lès-Lyon"
 galerie:
-  - "/images/spectacles/ascenseur-1.svg"
-  - "/images/spectacles/ascenseur-2.svg"
-  - "/images/spectacles/ascenseur-3.svg"
+  - "/images/spectacles/ascenseur-1.jpg"
+  - "/images/spectacles/ascenseur-2.jpg"
+  - "/images/spectacles/ascenseur-3.jpg"
+  - "/images/spectacles/ascenseur-4.jpg"
 order: 3
 ---
 

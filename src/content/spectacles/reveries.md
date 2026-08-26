@@ -1,7 +1,7 @@
 ---
 title: "Rêveries"
 tagline: "Un voyage poétique dans l'imagination de Mia, entre danse, théâtre et cirque aérien"
-heroImage: "/images/spectacles/reveries.svg"
+heroImage: "/images/spectacles/reveries-1.jpg"
 public: "Familial — pensé pour un jeune public et un public adulte"
 genre: "Théâtre, danse et aérien"
 artistes: "5 artistes"
@@ -22,9 +22,12 @@ joue:
   - "Association Le Sou des Écoles — Ville de Salagnon"
   - "MJC Jean Cocteau — Ville de Saint-Priest"
 galerie:
-  - "/images/spectacles/reveries-1.svg"
-  - "/images/spectacles/reveries-2.svg"
-  - "/images/spectacles/reveries-3.svg"
+  - "/images/spectacles/reveries-1.jpg"
+  - "/images/spectacles/reveries-2.jpg"
+  - "/images/spectacles/reveries-3.jpg"
+  - "/images/spectacles/reveries-4.jpg"
+  - "/images/spectacles/reveries-5.jpg"
+  - "/images/spectacles/reveries-6.jpg"
 order: 1
 ---
 

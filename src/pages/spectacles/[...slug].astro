@@ -20,17 +20,21 @@ const { show } = Astro.props;
 const { Content } = await render(show);
 const data = show.data;
 
-// Conversion d'un lien YouTube/Vimeo en URL d'intégration
-function embedUrl(url: string | undefined): string | null {
+// Détection du type de vidéo : YouTube/Vimeo en intégration, ou fichier local (.mp4, etc.)
+function videoSrc(url: string | undefined): { kind: 'embed' | 'file'; src: string } | null {
   if (!url) return null;
   const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
-  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`;
+  if (yt) return { kind: 'embed', src: `https://www.youtube-nocookie.com/embed/${yt[1]}` };
   const vm = url.match(/vimeo\.com\/(\d+)/);
-  if (vm) return `https://player.vimeo.com/video/${vm[1]}`;
+  if (vm) return { kind: 'embed', src: `https://player.vimeo.com/video/${vm[1]}` };
+  if (/\.(mp4|webm|ogv|mov)(\?.*)?$/i.test(url) || url.startsWith('/')) {
+    return { kind: 'file', src: url };
+  }
   return null;
 }
 
-const video = embedUrl(data.video);
+const video = videoSrc(data.video);
+const videoType = data.video?.match(/\.(mp4|webm|ogv|mov)/i)?.[1] || 'mp4';
 
 const metaItems = [
   { label: 'Public', value: data.public },
@@ -99,15 +103,22 @@ const metaItems = [
         <span class="kicker">En images</span>
         <h2>Vidéo</h2>
       </div>
-      {video ? (
+      {video?.kind === 'embed' ? (
         <div class="video-frame reveal">
           <iframe
-            src={video}
+            src={video.src}
             title={`Vidéo — ${data.title}`}
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
+        </div>
+      ) : video?.kind === 'file' ? (
+        <div class="video-frame reveal">
+          <video controls preload="metadata" poster={data.heroImage}>
+            <source src={video.src} type={`video/${videoType}`} />
+            Votre navigateur ne prend pas en charge la lecture de vidéos.
+          </video>
         </div>
       ) : (
         <div class="video-placeholder reveal">
