@@ -38,7 +38,13 @@ const shows = (await getCollection('spectacles')).sort((a, b) => a.data.order - 
           shows.map((show, i) => (
             <a class="card reveal" href={`/spectacles/${show.slug}/`}>
               <div class="card__media">
-                <img src={show.data.heroImage} alt={show.data.title} loading={i === 0 ? 'eager' : 'lazy'} />
+                {show.data.heroImage ? (
+                  <img src={show.data.heroImage} alt={show.data.title} loading={i === 0 ? 'eager' : 'lazy'} />
+                ) : (
+                  <div class="media-placeholder">
+                    <span class="media-placeholder__label">{show.data.title}</span>
+                  </div>
+                )}
               </div>
               <div class="card__body">
                 <h2>{show.data.title}</h2>

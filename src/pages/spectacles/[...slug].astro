@@ -62,7 +62,14 @@ const metaItems = [
 
       <div class="show-hero">
         <div class="show-hero__media">
-          <img src={data.heroImage} alt={data.title} />
+          {data.heroImage ? (
+            <img src={data.heroImage} alt={data.title} />
+          ) : (
+            <div class="media-placeholder">
+              <span class="media-placeholder__label">{data.title}</span>
+              <span class="media-placeholder__sub">Visuel bientôt disponible</span>
+            </div>
+          )}
         </div>
         <div>
           <span class="kicker">Spectacle</span>

@@ -306,13 +306,13 @@ p {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(33, 16, 32, 0.55), transparent);
+  background: linear-gradient(180deg, rgba(10, 8, 9, 0.5), transparent);
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
 .site-header.scrolled {
-  background: rgba(45, 21, 46, 0.92);
+  background: rgba(14, 11, 13, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 6px 24px -12px rgba(0, 0, 0, 0.5);
@@ -432,7 +432,7 @@ p {
   transform: translateX(-50%) translateY(8px);
   min-width: 264px;
   padding: 0.55rem;
-  background: linear-gradient(168deg, rgba(61, 31, 61, 0.98), rgba(33, 16, 32, 0.98));
+  background: linear-gradient(168deg, rgba(26, 20, 23, 0.98), rgba(12, 9, 11, 0.98));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(232, 205, 139, 0.24);
@@ -452,7 +452,7 @@ p {
   transform: translateX(-50%) rotate(45deg);
   width: 12px;
   height: 12px;
-  background: #3d1f3d;
+  background: #171215;
   border-left: 1px solid rgba(232, 205, 139, 0.24);
   border-top: 1px solid rgba(232, 205, 139, 0.24);
 }
@@ -581,7 +581,7 @@ p {
   right: 0;
   bottom: 0;
   z-index: 55;
-  background: rgba(33, 16, 32, 0.98);
+  background: rgba(14, 11, 13, 0.98);
   padding: 2rem var(--gutter);
   overflow-y: auto;
 }
@@ -782,11 +782,42 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 30%;
   transition: transform 0.5s ease;
 }
 
 .card:hover .card__media img {
   transform: scale(1.045);
+}
+
+/* Visuel d'attente quand aucune photo n'est encore fournie */
+.media-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background:
+    radial-gradient(400px 200px at 80% 0%, rgba(201, 162, 75, 0.2), transparent 60%),
+    linear-gradient(150deg, var(--plum-800), var(--plum-950));
+  color: var(--gold-light);
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.media-placeholder__label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+}
+
+.media-placeholder__sub {
+  font-size: 0.85rem;
+  color: rgba(250, 245, 236, 0.7);
+  letter-spacing: 0.04em;
 }
 
 .card__body {
@@ -924,6 +955,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 30%;
 }
 
 .show-hero h1 {
@@ -1058,8 +1090,35 @@ p {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: center 30%;
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-card);
+}
+
+/* Réalisations sur-mesure (page Événementiel) */
+.showcase-card {
+  margin: 0;
+}
+
+.showcase-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.showcase-card figcaption {
+  margin-top: 0.55rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: rgba(250, 245, 236, 0.82);
+}
+
+@media (max-width: 720px) {
+  .showcase-videos {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Prestations ---------- */
